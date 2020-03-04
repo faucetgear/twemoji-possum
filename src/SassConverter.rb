@@ -45,7 +45,7 @@ end
 
 # these strings are in arrays for easy concatenation
 header = ["$emoji: () !default;\n\n$emoji: map-merge(\n  (\n"]
-footer = ["  ),\n$emoji\n);\n"]
+footer = ["  ),\n  $emoji\n);\n"]
 
 output = header + rows + footer
 

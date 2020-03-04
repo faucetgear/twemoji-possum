@@ -8,8 +8,10 @@ require 'csv'
 require 'nokogiri'
 require 'open-uri'
 
-URL =  "http://unicode.org/emoji/charts/full-emoji-list.html"
-OUTPUT_PATH = File.join(Dir.pwd, "tmp", "full-emoji-list.csv")
+URL_EMOJI_LIST = "https://unicode.org/emoji/charts/full-emoji-list.html"
+URL_EMOJI_MODIFIERS = "https://unicode.org/emoji/charts/full-emoji-modifiers.html"
+OUTPUT_EMOJI_LIST_PATH = File.join(Dir.pwd, "tmp", "full-emoji-list.csv")
+OUTPUT_EMOJI_MODIFIERS_PATH = File.join(Dir.pwd, "tmp", "full-emoji-modifiers.csv")
 
 # this will be called from a rake task primarily, so the stdout
 # buffer needs to make it through to the caller's context
@@ -45,6 +47,11 @@ def nameOf node
     .gsub(/é/, "e")
     .gsub(/í/, "i")
     .gsub(/ô/, "o")
+    .gsub(/-\(blood-type\)$/, "")
+    .gsub(/\.\-/, "-")
+    .gsub(/\-\-/, "")
+    .gsub(/-\(\w+\)/, "")
+    .gsub(/\./, "")
 
   { node: node, name: name }
 end
@@ -120,17 +127,33 @@ end
 puts "generating unicode hex code point to human readable names list"
 
 puts "loading full emoji list"
-doc = Nokogiri::HTML(open(URL))
+emoji_list_doc = Nokogiri::HTML(open(URL_EMOJI_LIST))
 
 puts "emoji list loaded, converting to map"
-emoji_entries = doc
+emoji_list_entries = emoji_list_doc
   .css("tr")
   .select(&withoutHeaders)
   .map(&codeToName)
 
-puts "map generated, writing csv"
-CSV.open(OUTPUT_PATH, "wb") do |csv|
-  emoji_entries.each do |entry|
+puts "emoji list map generated, writing csv"
+CSV.open(OUTPUT_EMOJI_LIST_PATH, "wb") do |csv|
+  emoji_list_entries.each do |entry|
+    csv << entry
+  end
+end
+
+puts "loading full emoji modifiers"
+emoji_modifiers_doc = Nokogiri::HTML(open(URL_EMOJI_MODIFIERS))
+
+puts "emoji modifiers loaded, converting to map"
+emoji_modifiers_entries = emoji_modifiers_doc
+  .css("tr")
+  .select(&withoutHeaders)
+  .map(&codeToName)
+
+puts "emoji modifiers map generated, writing csv"
+CSV.open(OUTPUT_EMOJI_MODIFIERS_PATH, "wb") do |csv|
+  emoji_modifiers_entries.each do |entry|
     csv << entry
   end
 end

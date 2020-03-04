@@ -20,6 +20,7 @@ def pointOf emoji
   emoji.split("")
     .map { |s| s.ord.to_s(16)}
     .join("-")
+    .gsub(/^(\w+)-fe0f$/, '\1')
 end
 
 #######################################################
