@@ -7,7 +7,7 @@ require 'colored'
 
 LIST_PATH = File.join(Dir.pwd, "tmp", "twemoji-unicode-pairs.csv")
 COLLISIONS_PATH = File.join(Dir.pwd, "tmp", "COLLSIONS.csv")
-OUTPUT_PATH = File.join(Dir.pwd, "dist", "emoji-map.scss")
+OUTPUT_PATH = File.join(Dir.pwd, "dist", "emoji.scss")
 
 $stdout.sync = true
 
@@ -40,12 +40,12 @@ end
 rows = []
 
 entries.each do |key, val|
-  rows << "  \"#{key}\": \"#{val}\",\n"
+  rows << "    \"#{key}\": \"#{val}\",\n"
 end
 
 # these strings are in arrays for easy concatenation
-header = ["$emoji-map: (\n"]
-footer = [");\n"]
+header = ["$emoji: () !default;\n\n$emoji: map-merge(\n  (\n"]
+footer = ["  ),\n$emoji\n);\n"]
 
 output = header + rows + footer
 
