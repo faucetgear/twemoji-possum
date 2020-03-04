@@ -4,9 +4,9 @@
 # http://unicode.org/emoji/charts/full-emoji-list.html
 #######################################################
 
+require 'csv'
 require 'nokogiri'
 require 'open-uri'
-require 'csv'
 
 URL =  "http://unicode.org/emoji/charts/full-emoji-list.html"
 OUTPUT_PATH = File.join(Dir.pwd, "tmp", "full-emoji-list.csv")
@@ -14,8 +14,6 @@ OUTPUT_PATH = File.join(Dir.pwd, "tmp", "full-emoji-list.csv")
 # this will be called from a rake task primarily, so the stdout
 # buffer needs to make it through to the caller's context
 $stdout.sync = true
-
-
 
 #######################################################
 # FUNCTIONS: for process legibility
@@ -67,7 +65,7 @@ def flagNameOf node
     .children
     .css("a")
     .children
-    .map {|child| child.text.downcase.strip }
+    .map { |child| child.text.downcase.strip }
     .join("-")
     .gsub(/\s+/, "-")
     .gsub(/,/, "")
@@ -98,8 +96,6 @@ def substituteEquivalent obj
   { node: obj[:node], name: name }
 end
 
-
-
 #######################################################
 # ANONYMOUS FXNS: for call-chaining legibility
 #######################################################
@@ -116,8 +112,6 @@ codeToName = lambda do |node|
 
   [ code_point, human_name ]
 end
-
-
 
 #######################################################
 # CALLING THE SCRAPE/MAP PROCESS, WRITING THE LIST
@@ -142,4 +136,3 @@ CSV.open(OUTPUT_PATH, "wb") do |csv|
 end
 
 puts "csv writing complete"
-

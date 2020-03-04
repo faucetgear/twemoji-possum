@@ -1,5 +1,5 @@
-require 'open4'
 require 'colored'
+require 'open4'
 
 def runTask scriptPath
   Open4.popen4("ruby #{File.join(Dir.pwd, "src", scriptPath)}") do |pid, stdin, stdout, stderr|
@@ -70,4 +70,3 @@ task :generate_master_groups do
   puts "\n"
   puts "Generated 'code point' : 'group name' json in dist directory".bold.green
 end
-

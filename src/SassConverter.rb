@@ -11,8 +11,6 @@ OUTPUT_PATH = File.join(Dir.pwd, "dist", "emoji-map.scss")
 
 $stdout.sync = true
 
-
-
 #######################################################
 # GENERATING the key value pairs
 #######################################################
@@ -45,7 +43,6 @@ entries.each do |key, val|
   rows << "  \"#{key}\": \"#{val}\",\n"
 end
 
-
 # these strings are in arrays for easy concatenation
 header = ["$emoji-map: (\n"]
 footer = [");\n"]
@@ -70,4 +67,3 @@ File.open(OUTPUT_PATH, "w") do |file|
 end
 
 puts "scss writing complete"
-

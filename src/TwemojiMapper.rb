@@ -3,16 +3,14 @@
 # https://twemoji.maxcdn.com/2/test/preview.html
 #######################################################
 
+require 'csv'
 require 'nokogiri'
 require 'open-uri'
-require 'csv'
 
 URL = "https://twemoji.maxcdn.com/2/test/preview.html"
 OUTPUT_PATH = File.join(Dir.pwd, "tmp", "twemoji-list.csv")
 
 $stdout.sync = true
-
-
 
 #######################################################
 # FUNCTIONS: for process legibility
@@ -20,11 +18,9 @@ $stdout.sync = true
 
 def pointOf emoji
   emoji.split("")
-    .map {|s| s.ord.to_s(16)}
+    .map { |s| s.ord.to_s(16)}
     .join("-")
 end
-
-
 
 #######################################################
 # ANONYMOUS FXNS: for call-chaining legibility
@@ -37,8 +33,6 @@ end
 codePoints = lambda do |emoji|
   [ pointOf(emoji) ]
 end
-
-
 
 #######################################################
 # CALLING THE SCRAPE/MAP PROCESS, WRITING THE LIST
@@ -63,4 +57,3 @@ CSV.open(OUTPUT_PATH, "wb") do |csv|
 end
 
 puts "csv writing complete"
-

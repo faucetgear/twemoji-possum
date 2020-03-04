@@ -41,7 +41,7 @@ combine_map.each do |key, val|
 end
 
 if !null_map.empty?
-  puts "there are unresolved code points, investigate at dist/NULL_LIST.csv".bold.red
+  puts "there are unresolved code points, investigate at tmp/NULL-LIST.csv".bold.red
 end
 
 CSV.open(NULL_PATH, "wb") do |csv|
@@ -57,4 +57,3 @@ CSV.open(COMBINE_PATH, "wb") do |csv|
 end
 
 puts "maps combined!"
-

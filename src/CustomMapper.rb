@@ -4,16 +4,14 @@
 # emoji cheatsheet
 #######################################################
 
-require 'json'
 require 'csv'
+require 'json'
 
 OUTPUT_PATH = File.join(Dir.pwd, "tmp", "custom-list.csv")
 EMOJI_CHEAT_SHEET_PATH = File.join(Dir.pwd, "lib", "modified-cheat-sheet.json")
 NULL_LIST_PATH = File.join(Dir.pwd, "lib", "null-list-rules.json")
 
 $stdout.sync = true
-
-
 
 #######################################################
 # CALLING THE SCRAPE/MAP PROCESS, WRITING THE LIST
@@ -40,5 +38,3 @@ CSV.open(OUTPUT_PATH, "wb") do |csv|
 end
 
 puts "csv writing complete"
-
-
