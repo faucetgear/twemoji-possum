@@ -1735,7 +1735,7 @@
 1f595-1f3fd,middle-finger-medium-skin-tone
 1f595-1f3fe,middle-finger-medium-dark-skin-tone
 1f595-1f3ff,middle-finger-dark-skin-tone
-1f595,middle-finger
+1f595,middle-finger,fu
 1f596-1f3fb,vulcan-salute-light-skin-tone
 1f596-1f3fc,vulcan-salute-medium-light-skin-tone
 1f596-1f3fd,vulcan-salute-medium-skin-tone
@@ -1834,7 +1834,7 @@
 1f63f,crying-cat,crying-cat-face
 1f640,weary-cat,scream-cat
 1f641,slightly-frowning-face
-1f642,slightly-smiling-face
+1f642,slightly-smiling-face,simple-smile
 1f643,upside-down-face
 1f644,face-with-rolling-eyes
 1f645-1f3fb-200d-2640-fe0f,woman-gesturing-no-light-skin-tone
@@ -2168,7 +2168,7 @@
 1f918-1f3fd,sign-of-the-horns-medium-skin-tone
 1f918-1f3fe,sign-of-the-horns-medium-dark-skin-tone
 1f918-1f3ff,sign-of-the-horns-dark-skin-tone
-1f918,sign-of-the-horns
+1f918,sign-of-the-horns,metal
 1f919-1f3fb,call-me-hand-light-skin-tone
 1f919-1f3fc,call-me-hand-medium-light-skin-tone
 1f919-1f3fd,call-me-hand-medium-skin-tone
